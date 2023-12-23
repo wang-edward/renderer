@@ -2,12 +2,17 @@
 
 #include "window.hpp"
 #include "pipeline.hpp"
+#include "device.hpp"
 
 namespace render {
 
 class FirstApp {
     Window window{WIDTH, HEIGHT, "Hello world"};
-    Pipeline pipeline{"shaders/simple_shader.vert.spv", "shaders/simple_shader.frag.spv"};
+    Device device{window};
+    Pipeline pipeline{device, 
+                      "shaders/simple_shader.vert.spv", 
+                      "shaders/simple_shader.frag.spv", 
+                       Pipeline::defaultPipelineConfigInfo(WIDTH, HEIGHT)};
 public:
     static constexpr int WIDTH = 800;
     static constexpr int HEIGHT = 600;
